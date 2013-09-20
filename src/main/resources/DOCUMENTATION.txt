@@ -1,0 +1,188 @@
+         _____  _             _        _____            _             _
+        |  __ \| |           (_)      / ____|          | |           | |
+        | |__) | |_   _  __ _ _ _ __ | |     ___  _ __ | |_ _ __ ___ | |
+        |  ___/| | | | |/ _` | | '_ \| |    / _ \| '_ \| __| '__/ _ \| |
+        | |    | | |_| | (_| | | | | | |___| (_) | | | | |_| | | (_) | |
+        |_|    |_|\__,_|\__, |_|_| |_|\_____\___/|_| |_|\__|_|  \___/|_|
+                         __/ |
+                        |___/
+             > A Server-Platform independent Plugin Controller! <
+
+Overview
+========
+The goal of this project is to allow server administrator to provide a simple
+yet powerful plugin that runs on as many server platforms.
+
+All commands that are shown here, are available on all supported platforms!
+
+
+Please note that the plugin name change while the plugin was developed, so
+ the permission nodes are starting with "pluginmanager" instead of
+ "plugincontrol".
+
+
+
+Configuration
+=============
+Each server has its own directory where the configuration is stored.
+Please follow the following instructions for your server.
+
+The configuration file has comments describing each setting in the
+configuration file.
+
+Bukkit (and servers using its API)
+----------------------------------
+The configuration folder is inside the plugin folder and is named
+"PluginControl". The main configuration file is "config.yml".
+
+CanaryMod
+---------
+The configuration directory for this plugin is a subdirectory of the
+global "config"-Directory. The directory is called "PluginControl".
+The main configuration file is "config.yml"
+
+Support
+=======
+Not all servers support some features of the plugin.
+
+CraftBukkit and Spigot
+----------------------
+All features are supported.
+
+MCPC+
+-----
+Forge-Mods are not supported. The install routine installs Bukkit-Plugins.
+
+CanaryMod
+---------
+Only the recode versions are supported.
+Due to the lack of a suitable repository for Plugins, there is no download,
+query and update functionality for this server.
+
+Table of features
+-----------------
+
+B = Servers implementing the Bukkit API
+M = MCPC
+R = CanaryMod Recode
+
+x = Full Support
+* = Partial Support
+- = No Support
+
+ Feature                  B M R
+--------------------------------
+ Plugin Information       x * x
+ Plugin Control           x * x
+ Install, Update          x * -
+ Uninstall                x * x
+ Permissions              x x x
+--------------------------------
+
+
+Localization
+============
+All localization information are stored in the "localization.lang"-File.
+The syntax of the file is described there.
+You can change the path of the language file in the "config.yml" of the
+plugin.
+
+
+Repositories
+============
+An important concept of the plugin is the "Repository"-System that allows
+to use multiple sources of plugins. Each plugin and its metadata is
+downloaded from a repository.
+
+At least one repository is needed to perform any internet related actions.
+
+Current supported repositories:
+  Name                           Platform
+-------------------------------------------------------
+* DevBukkit                      Bukkit
+
+
+
+Commands
+========
+Plugin Control
+--------------
+   + /pman enable <Plugin>               pluginmanager.control.enable
+     Enables a plugin.
+     If the plugin is not loaded, the plugin will be loaded as long as
+     the "pluginmanager.control.load"-Permission is given.
+
+   + /pman disable -s <Plugin>           pluginmanager.control.disable
+     Disables a plugin without unloading it.
+
+   + /pman disable <Plugin>              pluginmanager.control.disable
+     Disables a plugin and unloads it.
+     This command also needs "pluginmanager.control.unload" to unload
+     a plugin.
+
+   + /pman unload <Plugin>               pluginmanager.control.unload
+     Unloads a plugin.
+
+   + /pman load <Plugin>                 pluginmanager.control.load
+     Loads a plugin.
+
+   + /pman reload -s <Plugin>            pluginmanager.control.reload
+     Reloads a plugin without unloading it.
+
+   + /pman reload <Plugin>               pluginmanager.control.reload
+     Reloads a plugin and unloads it after disabling.
+     Needs "pluginmanager.control.unload" if this command should work
+     properly.
+
+Plugin Information
+------------------
+   + /pman list <Page>                   pluginmanager.info.list
+     Lists all plugins.
+     To control which plugin can be shown use these permission nodes:
+     - pluginmanager.info.list.unloaded   List unloaded plugins.
+     - pluginmanager.info.list.disabled   List disabled plugins.
+     - pluginmanager.info.list.enabled    List enabled plugins.
+     - pluginmanager.info.list.unknown    List other plugins.
+
+   + /pman info <Plugin>                 pluginmanager.info.info
+     Shows information about a plugin.
+     To control which plugin can be queried, use these permission nodes:
+     - pluginmanager.info.info.unloaded   Allows to query unloaded plugins.
+     - pluginmanager.info.info.enabled    Allows to query enabled plugins.
+     - pluginmanager.info.info.disabled   Allows to query disabled plugins.
+     - pluginmanager.info.fino.unknown    Allows to query all other plugins.
+
+   + /pman query <Name>                  pluginmanager.info.query
+     Queries information about a plugin.
+     Currently, only Bukkit can query information from it's plugin database.
+
+Plugin installer
+----------------
+   + /pman install <Plugin>              pluginmanager.installer.install
+     Installs a plugin.
+     Please note that this plugin makes sure that all dependencies are installed.
+     Only Bukkit can currently install plugins.
+
+   + /pman remove <Plugin>               pluginmanager.installer.uninstall
+     Uninstalls a plugin.
+     Please note that this plugin removes all plugins that depend on the
+     plugin that will be remove.
+     Please note that the removal of the plugin may fail.
+
+   + /pman update <Plugin>               pluginmanager.installer.update
+     Updates a plugin.
+     Please note that the plugin will be disabled while updating.
+
+Administrative Commands for this plugin
+---------------------------------------
+   All commands need the "pluginmanager.admin"-Permission to be
+   executed.
+
+   + /pman admin reload                  pluginmanager.admin.reload
+     Reloads the plugin. (And clears the cache)
+
+   + /pman admin reset                   pluginmanager.admin.reset
+     Resets the plugin.
+
+   + /pman repositories <Page>           pluginmanager.admin.repositories
+     Lists all repositories.

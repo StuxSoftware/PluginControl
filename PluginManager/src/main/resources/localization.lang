@@ -1,0 +1,242 @@
+#
+# Language file
+# -------------
+#
+# Syntax:
+# # Everything after a "#" is a comment.
+# <Key>: <Value>
+# ${<Value>}
+#
+# You may think this type of configuration file is pointless for the plugin because you could use
+# YAML. That's true, if you use CraftBukkit. Unfortunately this plugin can run on CanaryMod too.
+#
+
+#
+# Current Values
+# --------------
+# ${color:<ColorName>}               A color.
+# ${format:<Format>}                 Italic, Bold, etc.
+# ${args:<Id>}                       The arguments.
+# ${char:space}                      A simple space.
+# ${char:tab}                        The tab character.
+#
+
+########################################################################################################################
+# Plugin Control                                                                                                       #
+########################################################################################################################
+
+# Enable command.
+control.enable.notfound: ${color:red}${args:0} was not found.
+control.enable.already: ${color:red}${args:0} is already enabled.
+control.enable.success: ${color:green}${args:0} was enabled successfully.
+
+# Disable command.
+control.disable.notfound: ${color:red}${args:0} was not found.
+control.disable.already: ${color:red}${args:0} is not loaded.
+control.disable.success: ${color:green}${args:0} was disabled successfully.
+
+# Load command.
+control.load.notfound: ${color:red}${args:0} was not found.
+control.load.loaded: ${color:red}${args:0} is already loaded.
+control.load.success: ${color:green}${args:0} was loaded successfully.
+
+# Enable command.
+control.unload.notfound: ${color:red}${args:0} was not found.
+control.unload.already: ${color:red}${args:0} is already enabled.
+control.unload.success: ${color:green}${args:0} was unloaded successfully.
+
+# Plugin reload
+control.reload.notfound: ${color:red}${args:0} was not found.
+control.reload.success: ${color:green}${args:0} was reloaded successfully.
+
+########################################################################################################################
+# Plugin Information Commands                                                                                          #
+########################################################################################################################
+
+# Plugin List [Status Colors]
+info.list.state.enabled: ${color:green}
+info.list.state.disabled: ${color:yellow}
+info.list.state.unloaded: ${color:white}
+info.list.state.unknown: ${color:grey}
+
+info.list.line: ${args:0}${color:reset}: ${color:grey}${args:1}
+info.list.header: Plugin List
+
+# Plugin Information
+info.info.header: Plugin Information
+info.info.line.name: ${color:green}Name${color:reset}: ${color:green}${args:0}
+info.info.line.version: ${color:green}Version${color:reset}: ${color:green}${args:0}
+info.info.line.description: ${color:green}Description${color:reset}: ${color:green}${args:0}
+
+info.info.line.author.one: ${color:green}Author${color:reset}: ${color:green}${args:0}
+info.info.line.author.multi: ${color:green}Authors${color:reset}: ${color:green}${args:0}
+info.info.line.author.none: ${color:green}Authors${color:reset}: ${color:grey}None given
+
+info.info.line.state: ${color:green}State${color:reset}: ${color:green}${args:0}
+info.info.line.file: ${color:green}File${color:reset}: ${color:green}${args:0}
+info.info.line.main: ${color:green}Main-Class${color:reset}: ${color:green}${args:0}
+
+info.info.line.dependencies.hard.one: ${color:green}Dependency${color:reset}: ${color:green}${args:0}
+info.info.line.dependencies.hard.multi: ${color:green}Dependencies${color:reset}: ${color:green}${args:0}
+info.info.line.dependencies.hard.none: ${color:green}Dependencies${color:reset}: ${color:grey}None
+
+info.info.line.dependencies.soft.one: ${color:green}Soft-Dependency${color:reset}: ${color:green}${args:0}
+info.info.line.dependencies.soft.multi: ${color:green}Soft-Dependencies${color:reset}: ${color:green}${args:0}
+info.info.line.dependencies.soft.none: ${color:green}Soft-Dependencies${color:reset}: ${color:grey}None
+
+info.info.state.unknown: ${color:grey}Unknown
+info.info.state.unloaded: ${color:red}Unloaded
+info.info.state.disabled: ${color:yellow}Disabled
+info.info.state.enabled: ${color:green}Enabled
+
+info.info.notfound: ${color:red}Plugin not found: ${args:0}
+
+# Plugin query
+info.query.header: Repository Query
+
+info.query.name: ${color:green}Name${color:reset}: ${color:green}${args:0}
+info.query.version: ${color:green}Version${color:reset}: ${color:green}${args:0}
+info.query.description: ${color:green}Description${color:reset}: ${color:green}${args:0}
+
+info.query.authors.none: ${color:green}Authors${color:reset}: ${color:grey}None.
+info.query.authors.one: ${color:green}Author${color:reset}: ${color:green}${args:0}
+info.query.authors.multi: ${color:green}Authors${color:reset}: ${color:green}${args:0}
+
+info.query.dependencies.none: ${color:green}Dependencies${color:reset}: ${color:grey}None
+info.query.dependencies.one: ${color:green}Dependency${color:reset}: ${color:green}${args:0}
+info.query.dependencies.multi: ${color:green}Dependencies${color:reset}: ${color:green}${args:0}
+
+info.query.repository: ${color:green}Repository${color:reset}: ${color:green}${args:0}
+
+########################################################################################################################
+# The Action installs.                                                                                                 #
+########################################################################################################################
+
+# Plugin install
+install.install.step.dependencies: ${color:green}Resolving dependencies...
+install.install.step.dependencies.verbose: ${color:yellow}Resolving dependencies of: ${color:reset}${args:0}
+
+install.install.step.download: ${color:green}Downloading plugins...
+install.install.step.download.verbose: ${color:yellow}Downloading: ${color:reset}${args:0}
+
+install.install.step.install: ${color:green}Installing plugins...
+install.install.step.install.verbose: ${color:yellow}Installing file: ${args:0}
+install.install.step.install.unpack: ${color:yellow}Unpacking file: ${args:0}
+
+install.install.step.load: ${color:green}Loading plugins...
+install.install.step.load.verbose: ${color:yellow}Loading plugin: ${args:0}
+install.install.step.load.unknown: ${color:yellow}Got unknown plugin: ${args:0}
+install.install.step.load.failed: ${color:red}Failed to load plugin: ${args:0}
+
+install.install.mode.dry: ${color:yellow}This is a dry-run. No plugin was installed.
+install.install.command.load-and-dry: ${color:red}No plugin would be loaded.
+install.install.command.notfound: ${color:red}Plugin not found...
+install.install.command.success: ${color:green}Plugin installed...
+
+# Plugin update.
+install.update.step.disable: ${color:green}Disable plugin(s)...
+install.update.step.disable.verbose: ${color:yellow}Disabling plugin: ${color:reset}${args:0}
+
+install.update.step.download: ${color:green}Download plugin(s)...
+install.update.step.download.verbose: ${color:yellow}Downloading plugin: ${color:reset}${args:0}
+
+install.update.step.replace: ${color:green}Replace plugin(s)...
+install.update.step.replace.verbose: ${color:yellow}Replacing plugin: ${color:reset}${args:0}
+install.update.step.replace.fail: ${color:red}Failed to replace plugin: ${color:reset}${args:0}
+
+install.update.step.load: ${color:green}Enable plugin(s)...
+install.update.step.load.verbose: ${color:yellow}Enabling plugin: ${color:reset}${args:0}
+
+install.install.command.success: ${color:green}Plugin(s) updated...
+install.install.command.notfound: ${color:red}Plugin not found...
+
+# Plugin uninstall.
+install.uninstall.stage.dependencies: ${color:green}Calculating dependencies...
+
+install.uninstall.stage.unload: ${color:green}Unloading plugins...
+install.uninstall.stage.unload.verbose: ${color:yellow}Unloading plugin: ${color:reset}${args:0}
+
+install.uninstall.stage.remove: ${color:green}Removing plugins...
+install.uninstall.stage.remove.verbose: ${color:yellow}Deleting plugin: ${color:reset}${args:0}
+install.uninstall.stage.remove.failed: ${color:red}Failed to delete: ${color:reset}${args:0}
+
+install.uninstall.stage.load: ${color:green}Re-enable soft-dependencies.
+install.uninstall.stage.load.verbose: ${color:yellow}Enabling: ${color:reset}${args:0}
+
+install.uninstall.command.success: ${color:green}Plugin deleted...
+
+########################################################################################################################
+# Plugin Administration Commands.                                                                                      #
+########################################################################################################################
+
+# Plugin reload.
+admin.reload.success: ${color:green}PluginControl reloaded successfully.
+
+# Plugin reset
+admin.reset.success: ${color:green}PluginControl reset successfully.
+
+# Repository Listing
+admin.repositories.line: ${color:green}${args:0}${color:reset}: ${color:green}${args:1}.
+admin.repositories.header: ${color:dark_grey}Admin: ${color:yellow}Repositories
+
+########################################################################################################################
+# Help...                                                                                                              #
+########################################################################################################################
+plugin.help.line: ${color:green}${args:0}${color:reset}: ${color:green}${args:1}
+plugin.help.header: Help
+
+plugin.command.help: Shows the commands of this plugin.
+
+plugin.command.admin: Administrative commands.
+
+plugin.command.enable: Enables a plugin.
+plugin.command.disable: Disables a plugin.
+plugin.command.load: Loads a plugin.
+plugin.command.unload: Unloads a plugin.
+plugin.command.reload: Reloads a plugin.
+
+plugin.command.list: Lists all plugins.
+plugin.command.info: Shows information about a plugin.
+plugin.command.query: Downloads information about a plugin.
+
+plugin.command.update: Updates a plugin
+plugin.command.install: Installs a plugin
+plugin.command.uninstall: Removes a plugin from the server.
+
+########################################################################################################################
+# Chat User Interface                                                                                                  #
+########################################################################################################################
+ui.header.default: ${color:gray}==== ${color:dark_gray}${args:0}${color:gray} ====
+ui.header.paginated: ${color:gray}==== ${color:dark_gray}${args:0}${color:gray} [${color:dark_gray}${args:1}${color:gray}/${color:dark_gray}${args:2}${color:gray}] ====
+
+########################################################################################################################
+# Command Localization                                                                                                 #
+########################################################################################################################
+cmd.notfound: ${color:red}Command not found.
+cmd.exception: ${color:red}An exception occured while executing the command.
+cmd.call.fail: ${color:red}Failed to call command.
+cmd.check.oponly: ${color:red}You have to execute this command as an op.
+cmd.check.noplayer: ${color:red}This command cannot be executed by a player.
+cmd.check.noconsole: ${color:red}This command cannot be from the console.
+cmd.check.permission: ${color:red}You don't have permission.
+cmd.check.flag: ${color:red}Invalid flag.
+cmd.check.args.min: ${color:red}Too few arguments.
+cmd.check.args.max: ${color:red}Too many arguments.
+
+########################################################################################################################
+# Exception Message Translations.                                                                                      #
+########################################################################################################################
+exception.operation.fail: ${color:red}Plugin-Operation failed.
+exception.io.fail: ${color:red}I/O Operation failed.
+
+########################################################################################################################
+# Miscallanious Translations                                                                                           #
+########################################################################################################################
+
+# Characters
+misc.listseparator: ,${char:space}
+
+# Plugin output
+plugin.command.base.line[0]: ${color:green}${args:0} v${args:1}
+plugin.command.base.line[1]: ${color:green}${format:italic}Use ${color:green}/pman help ${format:italic}to show the commands.
+

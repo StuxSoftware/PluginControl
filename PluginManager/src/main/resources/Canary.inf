@@ -1,0 +1,10 @@
+#
+# Plugin Metadata for CanaryMod. (Recode)
+# ---------------------------------------
+# This file contains metadata for CanaryMod. Without this file,
+# this plugin cannot load on CanaryMod.
+#
+main-class=net.stuxcrystal.pluginmanager.compat.canary.RecodeServerPlatform
+name=${project.name}
+author=StuxCrystal
+version=${project.version}

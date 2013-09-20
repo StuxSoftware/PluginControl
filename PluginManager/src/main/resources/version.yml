@@ -1,0 +1,11 @@
+#
+# Internal Metadata-File for ${project.name}.
+#
+# This file is needed because it is currently easier to
+# query the project metadata from a separate file
+# than to query the data from the plugin interfaces
+# provided in the compat-packages.
+#
+
+name: ${project.name}
+version: ${project.version}

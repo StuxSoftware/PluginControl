@@ -1,0 +1,183 @@
+#
+# The plugin.yml for Bukkit
+# -------------------------
+# This file contains the metadata needed to run this plugin on Bukkit.
+#
+
+name: ${project.name}
+description: Platform independent plugin manager.
+version: ${project.version}
+author: StuxCrystal
+
+main: net.stuxcrystal.pluginmanager.compat.bukkit.BukkitServerPlatform
+
+# List of commands.
+commands:
+  # The base command of the plugin.
+  pman:
+    description: Base command for of the PluginManager.
+    usage: |
+      /<command> help - Shows the commands of this plugin
+      /<command> admin reset - Resets the configuration of the plugin.
+      /<command> admin reload - Reload the plugin.
+      /<command> admin repositories - Allows to list all repositories.
+      /<command> enable <Plugin> - Enables a plugin.
+      /<command> disable -s <Plugin> - Disables a plugin.
+      /<command> disable <Plugin> - Disables and unloads a plugin.
+      /<command> load <Plugin> - Loads a plugin.
+      /<command> unload <Plugin> - Unloads a plugin.
+      /<command> reload <Plugin> - Reloads a plugin.
+      /<command> reload -s <Plugin> - Reloads the plugin without unloading it.
+      /<command> list - Lists all plugins.
+      /<command> info <Plugin> - Shows information about a plugin.
+      /<command> query <Plugin> - Downloads information about a plugin.
+      /<command> install <Plugin> - Installs a plugin.
+      /<command> install -l <Plugin> - Installs a plugin and loads it.
+      /<command> uninstall <Plugin> - Uninstalls a plugin.
+    aliases: [bi, bukkitinstall, pluginmanager]
+
+# List of permissions:
+permissions:
+
+  ######################################################################################################################
+  # Plugin Control                                                                                                     #
+  ######################################################################################################################
+  pluginmanager.control.enable:
+    description: Allows to enable a plugin.
+    default: op
+
+  pluginmanager.control.disable:
+    description: Allows to disable a plugin
+    default: op
+
+  pluginmanager.control.load:
+    description: Allows to load a plugin.
+    default: op
+
+  pluginmanager.control.unload:
+    description: Allows to unload a plugin.
+    default: op
+
+  pluginmanager.control.*:
+    description: Allows to completely control a plugin.
+    default: op
+    children:
+      pluginmanager.control.enable: true
+      pluginmanager.control.disable: true
+      pluginmanager.control.load: true
+      pluginmanager.control.unload: true
+
+  ######################################################################################################################
+  # Plugin Information                                                                                                 #
+  ######################################################################################################################
+  pluginmanager.info.list:
+    description: Allows to list all plugins.
+    default: op
+
+  pluginmanager.info.list.unloaded:
+    description: Allows to list unloaded plugins.
+    default: op
+
+  pluginmanager.info.list.enabled:
+    description: Allows to list loaded plugins.
+    default: op
+
+  pluginmanager.info.list.disabled:
+    description: Allows to list disabled plugins.
+    default: op
+
+  pluginmanager.info.list.unknown:
+    description: Allows to list plugins with an unknown state. (Shouldn't be happen in this platform.)
+    default: op
+
+  pluginmanager.info.list.*:
+    description: Allows to show all plugins in the list command.
+    default: op
+    children:
+      pluginmanager.info.list.unloaded: true
+      pluginmanager.info.list.enabled: true
+      pluginmanager.info.list.disabled: true
+      pluginmanager.info.list.unknown: true
+      pluginmanager.info.list: true
+
+
+
+  pluginmanager.info.info:
+    description: Allows to query information about a plugin.
+    default: op
+
+  pluginmanager.info.info.unloaded:
+    description: Allows to query information about an unloaded plugin.
+    default: op
+
+  pluginmanager.info.info.enabled:
+    description: Allows to query information about an enabled plugin.
+    default: op
+
+  pluginmanager.info.info.disabled:
+    description: Allows to query information about a disabled plugin.
+    default: op
+
+  pluginmanager.info.info.unknown:
+    description: Allows to query information about a plugin with unknown status.
+    default: op
+
+  pluginmanager.info.info.*:
+    description: Allows to query information about all plugins.
+    default: op
+    children:
+      pluginmanager.info.info: true
+      pluginmanager.info.info.unloaded: true
+      pluginmanager.info.info.enabled: true
+      pluginmanager.info.info.disabled: true
+      pluginmanager.info.fino.unknown: true
+
+  pluginmanager.info.query:
+    description: Allows to query information about plugin from the internet.
+    default: op
+
+  ######################################################################################################################
+  # Plugin installer.                                                                                                  #
+  ######################################################################################################################
+  pluginmanager.install.install:
+    description: Allows to install a plugin.
+    default: op
+
+  pluginmanager.install.uninstall:
+    description: Allows to uninstall a plugin.
+    default: op
+
+  pluginmanager.install.*:
+    description: Allows to use the installer and the uninstaller.
+    default: op
+    children:
+      pluginmanager.install.install: true
+      pluginmanager.install.uninstall: true
+
+  ######################################################################################################################
+  # Pluginmanager Control                                                                                              #
+  ######################################################################################################################
+  pluginmanager.admin:
+    description: Allows to use any administrative commands.
+    default: op
+
+  pluginmanager.admin.reload:
+    description: Allows to reload the plugin.
+    default: op
+
+  pluginmanager.admin.reset:
+    description: Allows to reset the configuration of the plugin.
+    default: op
+
+  pluginmanager.admin.repositories:
+    description: Allows to show all activated repositories.
+    default: op
+
+  pluginmanager.admin.*:
+    description: Allows to use all administrative commands.
+    default: op
+    children:
+      pluginmanager.admin: true
+      pluginmanager.admin.reload: true
+      pluginmanager.admin.reset: true
+      pluginmanager.admin.repositories: true

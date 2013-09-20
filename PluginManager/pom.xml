@@ -1,0 +1,210 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.stuxcrystal</groupId>
+    <artifactId>PluginControl</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>PluginControl</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <repositories>
+
+        <!-- Maven repo. -->
+        <repository>
+            <id>Maven-repo</id>
+            <name>Maven repository</name>
+            <url>http://repo1.maven.org/maven2</url>
+        </repository>
+
+        <!-- Bukkit -->
+        <repository>
+            <id>bukkit-repo</id>
+            <url>http://repo.bukkit.org/content/groups/public/</url>
+        </repository>
+
+        <!-- Canary Mod -->
+        <repository>
+            <id>vi-repo</id>
+            <name>Visual Illusions Repository</name>
+            <url>http://repo.visualillusionsent.net</url>
+        </repository>
+
+        <!-- A repository where Forge available. -->
+        <repository>
+            <id>mcstats</id>
+            <url>http://repo.mcstats.org/content/repositories/public/</url>
+        </repository>
+
+
+        <repository>
+            <id>stux</id>
+            <url>http://repo.stuxcrystal.net/content/repositories/snapshots/</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Configuration and Commands. -->
+        <dependency>
+            <groupId>net.stuxcrystal</groupId>
+            <artifactId>SimpleDev</artifactId>
+            <version>1.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Canary Mod (Please note that this library uses Recode.) -->
+        <dependency>
+            <groupId>net.canarymod</groupId>
+            <artifactId>CanaryLib</artifactId>
+            <version>0.9</version>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Bukkit. -->
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>1.5.2-R1.0</version>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- JSON -->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+
+        <finalName>${project.name}</finalName>
+
+        <resources>
+            <resource>
+                <targetPath>.</targetPath>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>plugin.yml</include>
+                    <include>Canary.inf</include>
+                    <include>version.yml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <targetPath>.</targetPath>
+                <directory>${basedir}/src/main/resources</directory>
+                <excludes>
+                    <exclude>plugin.yml</exclude>
+                    <exclude>Canary.inf</exclude>
+                    <exclude>version.yml</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <relocations>
+                                <!-- Relocations of SimpleDev Packages. -->
+                                <relocation>
+                                    <pattern>net.stuxcrystal.simpledev.libs</pattern>
+                                    <shadedPattern>net.stuxcrystal.pluginmanager.libs.org.apache</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>net.stuxcrystal.commandhandler</pattern>
+                                    <shadedPattern>net.stuxcrystal.pluginmanager.simpledev.commandhandler</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>net.stuxcrystal.configuration</pattern>
+                                    <shadedPattern>net.stuxcrystal.pluginmanager.simpledev.configuration</shadedPattern>
+                                </relocation>
+
+                                <!-- Shading of extra libraries -->
+                                <relocation>
+                                    <pattern>org.json</pattern>
+                                    <shadedPattern>net.stuxcrystal.pluginmanager.libs</shadedPattern>
+                                </relocation>
+                            </relocations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>true</addMavenDescriptor>
+                        <manifest>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+
+                        <manifestEntries>
+                            <!-- Make sure SimpleDev is inside the classpath. -->
+                            <ClassPath>./SimpleDev.jar ./lib/SimpleDev.jar ../SimpleDev.jar ../lib/SimpleDev.jar
+                            </ClassPath>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <preparationGoals>jar:jar</preparationGoals>
+                    <goals>jar:jar</goals>
+                    <tagNameFormat>${project.version}</tagNameFormat>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
